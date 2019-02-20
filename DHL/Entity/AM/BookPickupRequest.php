@@ -22,7 +22,8 @@
  * @version     0.1
  */
 
-namespace DHL\Entity\AM; 
+namespace DHL\Entity\AM;
+
 use DHL\Entity\Base;
 
 /**
@@ -31,62 +32,85 @@ use DHL\Entity\Base;
 class BookPickupRequest extends Base
 {
     /**
+     * Parameters to be send in the body
+     * Version 3.0 requiere nuevos parametros
+     * RegionCode, RequestorParams, PickupParams
+     * PickupContacs
+     * @var array
+     */
+    protected $_bodyParams = array(
+        'RegionCode'      => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'Requestor'       => array(
+            'type'      => 'Requestor',
+            'required'  => false,
+            'subobject' => true,
+        ),
+        'Place'           => array(
+            'type'      => 'Place',
+            'required'  => false,
+            'subobject' => true,
+        ),
+        'Pickup'          => array(
+            'type'      => 'Pickup',
+            'required'  => false,
+            'subobject' => true,
+        ),
+        'PickupContact'   => array(
+            'type'      => 'PickupContact',
+            'required'  => false,
+            'subobject' => true,
+        ),
+        'ShipmentDetails' => array(
+            'type'      => 'ShipmentDetails',
+            'required'  => false,
+            'subobject' => true,
+        ),
+        'PickupType'      => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'LargestPiece'    => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+    );
+
+    /**
+     * Display the schema version
+     * Version 3.0 de DHL pide mostrar esquema
+     * @var boolean
+     */
+    protected $_displaySchemaVersion = true;
+
+    /**
      * Is this object a subobject
      * @var boolean
      */
     protected $_isSubobject = false;
 
     /**
+     * @var string
+     * Se actualia a la version 3.0
+     * The schema version
+     */
+    protected $_schemaVersion = '3.0';
+
+    /**
      * Name of the service
      * @var string
      */
-    protected $_serviceName = 'BookPickupRequest';
+    protected $_serviceName = 'BookPURequest';
 
     /**
      * @var string
+     * Servicio BookPURequest es que usa region AM
      * Service XSD
      */
-    protected $_serviceXSD = 'BookPickupRequest.xsd';
-
-    /**
-     * Parameters to be send in the body
-     * @var array
-     */
-    protected $_bodyParams = array(
-        'Requestor' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-        'Place' => array(
-            'type' => 'Place',
-            'required' => false,
-            'subobject' => true,
-        ), 
-        'Pickup' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-        'PickupContact' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-        'ShipmentDetails' => array(
-            'type' => 'ShipmentDetails',
-            'required' => false,
-            'subobject' => true,
-        ), 
-        'PickupType' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-        'LargestPiece' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-    );
+    protected $_serviceXSD = 'BookPURequest.xsd';
 }

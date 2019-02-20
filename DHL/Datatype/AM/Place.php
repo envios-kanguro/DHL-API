@@ -22,7 +22,8 @@
  * @version     0.1
  */
 
-namespace DHL\Datatype\AM; 
+namespace DHL\Datatype\AM;
+
 use DHL\Datatype\Base;
 
 /**
@@ -38,65 +39,98 @@ class Place extends Base
 
     /**
      * Parameters of the datatype
+     * Se actualizaron parametros para version 3.0 de PUR
+     * LocationType, Address1, Address2,PackageLocation,
+     * StateCode, DivisionName
      * @var array
      */
     protected $_params = array(
+        'LocationType'        => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'CompanyName'         => array(
+            'type'      => 'CompanyNameValidator',
+            'required'  => false,
+            'subobject' => false,
+            'comment'   => 'Name of company / business',
+            'maxLength' => '35',
+        ),
+        'Address1'            => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'Address2'            => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'PackageLocation'     => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'City'                => array(
+            'type'      => 'City',
+            'required'  => false,
+            'subobject' => false,
+            'comment'   => 'City name',
+            'maxLength' => '35',
+        ),
         'ResidenceOrBusiness' => array(
-            'type' => 'ResidenceOrBusiness',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Identifies if a location is a business, residence, or both (B:Business, R:Residence, C:Business Residence)',
-            'length' => '1',
+            'type'        => 'ResidenceOrBusiness',
+            'required'    => false,
+            'subobject'   => false,
+            'comment'     => 'Identifies if a location is a business, residence, or both (B:Business, R:Residence, C:Business Residence)',
+            'length'      => '1',
             'enumeration' => 'B,R,C',
-        ), 
-        'CompanyName' => array(
-            'type' => 'CompanyNameValidator',
-            'required' => false,
+        ),
+        'AddressLine'         => array(
+            'type'      => 'AddressLine',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'Name of company / business',
+            'comment'   => 'Address Line',
             'maxLength' => '35',
-        ), 
-        'AddressLine' => array(
-            'type' => 'AddressLine',
-            'required' => false,
+        ),
+        'CountryCode'         => array(
+            'type'      => 'CountryCode',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'Address Line',
-            'maxLength' => '35',
-        ), 
-        'City' => array(
-            'type' => 'City',
-            'required' => false,
+            'comment'   => 'ISO country codes',
+            'length'    => '2',
+        ),
+        'PostalCode'          => array(
+            'type'      => 'PostalCode',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'City name',
-            'maxLength' => '35',
-        ), 
-        'CountryCode' => array(
-            'type' => 'CountryCode',
-            'required' => false,
+            'comment'   => 'Full postal/zip code for address',
+        ),
+        'DivisionCode'        => array(
+            'type'      => 'StateCode',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'ISO country codes',
-            'length' => '2',
-        ), 
-        'DivisionCode' => array(
-            'type' => 'StateCode',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Division (state) code.',
+            'comment'   => 'Division (state) code.',
             'maxLength' => '2',
             'minLength' => '2',
-        ), 
-        'Division' => array(
-            'type' => 'State',
-            'required' => false,
+        ),
+        'Division'            => array(
+            'type'      => 'State',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'State',
+            'comment'   => 'State',
             'maxLength' => '35',
-        ), 
-        'PostalCode' => array(
-            'type' => 'PostalCode',
-            'required' => false,
+        ),
+        'StateCode'           => array(
+            'type'      => 'string',
+            'required'  => false,
             'subobject' => false,
-            'comment' => 'Full postal/zip code for address',
-        ), 
+        ),
+        'DivisionName'        => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
     );
 }
