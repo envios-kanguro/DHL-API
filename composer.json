@@ -1,12 +1,12 @@
 {
-    "name": "envios-kanguro/dhl-api",
-    "description": "Actualizacion de la version 6.3 del shipmentrequest dhl",
-    "type": "library",
-    "license": "gnu",
+    "name": "envioskanguro_alfallouji/dhl_api",
+    "description": "PHP library to communicate with the DHL XML Services.",
+    "type": "project",
+    "license": "LGPL-2.1",
     "authors": [
         {
-            "name": "jessica de la cruz",
-            "email": "jessica@envioskanguro.com"
+            "name": "Bashar Al-Fallouji",
+            "email": "bashar@alfallouji.com"
         }
     ],
     "minimum-stability": "dev",
