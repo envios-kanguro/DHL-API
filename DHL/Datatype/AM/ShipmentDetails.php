@@ -48,6 +48,7 @@ class ShipmentDetails extends Base
             'type'      => '',
             'required'  => false,
             'subobject' => false,
+	),
         'AccountNumber'     => array(
             'type'      => '',
             'required'  => false,
