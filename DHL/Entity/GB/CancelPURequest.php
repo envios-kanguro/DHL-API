@@ -22,7 +22,8 @@
  * @version     0.1
  */
 
-namespace DHL\Entity\GB; 
+namespace DHL\Entity\GB;
+
 use DHL\Entity\Base;
 
 /**
@@ -31,10 +32,85 @@ use DHL\Entity\Base;
 class CancelPURequest extends Base
 {
     /**
+     * Parameters to be send in the body
+     * @var array
+     */
+    protected $_bodyParams = array(
+        'RegionCode'         => array(
+            'type'        => 'string',
+            'required'    => false,
+            'subobject'   => false,
+            'comment'     => 'RegionCode',
+            'minLength'   => '2',
+            'maxLength'   => '2',
+            'enumeration' => 'AP,EU,AM',
+        ),
+        'ConfirmationNumber' => array(
+            'type'         => 'string',
+            'required'     => false,
+            'subobject'    => false,
+            'minInclusive' => '1',
+            //'maxInclusive' => '999999999',
+        ),
+        'RequestorName'      => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+            'maxLength' => '35',
+        ),
+        'CountryCode'        => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+            'comment'   => 'ISO country codes',
+            'length'    => '2',
+        ),
+        'OriginSvcArea'      => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+            'minLength' => '3',
+            'maxLength' => '3',
+        ),
+        'Reason'             => array(
+            'type'        => 'string',
+            'required'    => false,
+            'subobject'   => false,
+            'maxLength'   => '3',
+            'minLength'   => '3',
+            'enumeration' => '001,002,003,004,005,006,007,008',
+        ),
+        'PickupDate'         => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+        'CancelTime'         => array(
+            'type'      => 'string',
+            'required'  => false,
+            'subobject' => false,
+        ),
+    );
+
+    /**
+     * Display the schema version
+     * Version 3.0 de DHL pide mostrar esquema
+     * @var boolean
+     */
+    protected $_displaySchemaVersion = true;
+
+    /**
      * Is this object a subobject
      * @var boolean
      */
     protected $_isSubobject = false;
+
+    /**
+     * @var string
+     * Se actualia a la version 3.0
+     * The schema version
+     */
+    protected $_schemaVersion = '3.0';
 
     /**
      * Name of the service
@@ -47,65 +123,4 @@ class CancelPURequest extends Base
      * Service XSD
      */
     protected $_serviceXSD = 'CancelPURequest.xsd';
-
-    /**
-     * Parameters to be send in the body
-     * @var array
-     */
-    protected $_bodyParams = array(
-        'RegionCode' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'RegionCode',
-            'minLength' => '2',
-            'maxLength' => '2',
-            'enumeration' => 'AP,EU,AM',
-        ), 
-        'ConfirmationNumber' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'minInclusive' => '1',
-            'maxInclusive' => '999999999',
-        ), 
-        'RequestorName' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'maxLength' => '35',
-        ), 
-        'CountryCode' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'ISO country codes',
-            'length' => '2',
-        ), 
-        'OriginSvcArea' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'minLength' => '3',
-            'maxLength' => '3',
-        ), 
-        'Reason' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-            'maxLength' => '3',
-            'minLength' => '3',
-            'enumeration' => '001,002,003,004,005,006,007,008',
-        ), 
-        'PickupDate' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-        'CancelTime' => array(
-            'type' => 'string',
-            'required' => false,
-            'subobject' => false,
-        ), 
-    );
 }
