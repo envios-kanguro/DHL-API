@@ -221,10 +221,12 @@ abstract class Base extends BaseDataType
         }
         $xmlWriter->endElement(); // End of ServiceHeader
 
-        $xmlWriter->startElement('MetaData');
-        $xmlWriter->writeElement('SoftwareName', 'FRMALISTO APP');
-        $xmlWriter->writeElement('SoftwareVersion', '1.00');
-        $xmlWriter->endElement(); // End of MetaData
+        if ($this->_serviceName != 'KnownTrackingRequest') {
+            $xmlWriter->startElement('MetaData');
+            $xmlWriter->writeElement('SoftwareName', 'FRMALISTO APP');
+            $xmlWriter->writeElement('SoftwareVersion', '1.00');
+            $xmlWriter->endElement(); // End of MetaData
+        }
 
         $xmlWriter->endElement(); // End of Request
 
