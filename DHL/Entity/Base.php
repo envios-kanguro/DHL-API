@@ -142,16 +142,16 @@ abstract class Base extends BaseDataType
             throw new \Exception('Error returned from DHL webservice : ' . $errorMsg);
         }
 
-        $parts     = explode('\\', get_class($this));
+        $parts = explode('\\', get_class($this));
         $className = array_pop($parts);
         foreach ($xml->children() as $child) {
             $childName = $child->getName();
             switch ($childName) {
                 case 'Response':
-                    $this->MessageTime      = (string) $child->ServiceHeader->MessageTime;
+                    $this->MessageTime = (string) $child->ServiceHeader->MessageTime;
                     $this->MessageReference = (string) $child->ServiceHeader->MessageReference;
-                    $this->SiteID           = (string) $child->ServiceHeader->SiteID;
-                    $this->Password         = '#';
+                    $this->SiteID = (string) $child->ServiceHeader->SiteID;
+                    $this->Password = '#';
                     break;
 
                 default:
@@ -223,7 +223,7 @@ abstract class Base extends BaseDataType
 
         if ($this->_serviceName != 'KnownTrackingRequest') {
             $xmlWriter->startElement('MetaData');
-            $xmlWriter->writeElement('SoftwareName', 'FRMALISTO APP');
+            $xmlWriter->writeElement('SoftwareName', 'TECNOENVIO APP');
             $xmlWriter->writeElement('SoftwareVersion', '1.00');
             $xmlWriter->endElement(); // End of MetaData
         }
@@ -282,11 +282,11 @@ abstract class Base extends BaseDataType
                 if (isset($infos['multivalues']) && $infos['multivalues']) {
                     $this->_values[$name] = array();
                 } else {
-                    $tmp   = get_class($this);
+                    $tmp = get_class($this);
                     $parts = explode('\\', $tmp);
                     array_pop($parts);
-                    $className            = implode('\\', $parts) . '\\' . $infos['type'];
-                    $className            = str_replace('Entity', 'Datatype', $className);
+                    $className = implode('\\', $parts) . '\\' . $infos['type'];
+                    $className = str_replace('Entity', 'Datatype', $className);
                     $this->_values[$name] = new $className();
                 }
             } else {
